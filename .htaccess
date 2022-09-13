@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^seu-dominio.com$ [NC,OR] RewriteCond %{HTTP_HOST} ^www.seu-dominio.com$
+RewriteCond %{REQUEST_URI} !laravel/uniforme-ads/public/
+RewriteRule (.*) /laravel/uniforme-ads/public/$1 [L]
+Options -Indexes

@@ -5,9 +5,11 @@ App\VariaviesDeAmbiente\Variaveis::load(__DIR__ . '/../');
 
 use App\Queries\Alunos;
 
-$alunos = new Alunos;
-// $dados = $alunos->getAlunos();
+use Dompdf\Dompdf;
 
+$dompdf = new Dompdf();
+
+$alunos = new Alunos;
 
 ?>
 <!DOCTYPE html>
@@ -30,21 +32,27 @@ $alunos = new Alunos;
             <div class="textos">
                 <form name="alunos" method="post">
                     <label for="">Nome Completo</label>
-                    <input type="text" name="nome" id="">
+                    <input type="text" name="nome" id="" required>
                     <label for="">Quantidade</label>
-                    <select name="quantidade" id="">
+                    <select name="quantidade" id="" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
                     <label for="">Tamanho</label>
-                    <select name="tamanho" id="">
+                    <select name="tamanho" id="" required>
                         <option value="P">P</option>
                         <option value="M">M</option>
                         <option value="G">G</option>
                         <option value="GG">GG</option>
                     </select>
-                    <button type="alunos" name="enviar">Enviar</button>
+                    <!-- <button type="submit" name="enviar">Enviar</button> -->
+                    <!-- <button type="submit" name="pdf">Gerar PDF</button> -->
+                    <input class="botoes" type="submit" value="Enviar" name="enviar">
+
+                </form>
+                <form action="" method="post">
+                    <input class="botoes" type="submit" value="PDF" name="pdf">
                 </form>
             </div>
         </div>
@@ -69,6 +77,18 @@ $alunos = new Alunos;
         $quantidade = $_POST['quantidade'];
         $tamanho = $_POST['tamanho'];
         $alunos->insertAluno($nome, $tamanho, $quantidade);
+    }
+
+    if (isset($_POST['pdf'])) {
+
+        // $html = file_get_contents('123');
+
+        $dompdf->loadHtml('<h1>ola</>');
+
+        $dompdf->render();
+
+        $dompdf->stream("alunos", array("Attachment"=>false));
+        // $dompdf->stream('alunos.pdf');
     }
     ?>
 

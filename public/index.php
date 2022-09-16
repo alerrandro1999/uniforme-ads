@@ -5,7 +5,15 @@ App\VariaviesDeAmbiente\Variaveis::load(__DIR__ . '/../');
 
 use App\Queries\Alunos;
 
+use App\CriarCSV\CriarCSV;
+
+use App\CriarCSV\CriarNomeArquivo;
+
 $alunos = new Alunos;
+
+$getalunos = $alunos->getAlunos();
+
+    
 
 ?>
 <!DOCTYPE html>
@@ -48,7 +56,7 @@ $alunos = new Alunos;
 
                 </form>
                 <form action="" method="post">
-                    <input class="botoes" type="submit" value="PDF" name="pdf">
+                    <input class="botoes" type="submit" value="PDF" name="csv">
                 </form>
             </div>
         </div>
@@ -74,6 +82,28 @@ $alunos = new Alunos;
         $tamanho = $_POST['tamanho'];
         $alunos->insertAluno($nome, $tamanho, $quantidade);
     }
+
+    if (isset($_POST['csv'])) {
+        // foreach ($getalunos as $value) {
+        //     $dados = [
+        //         [
+        //             'ID',
+        //             'Nome',
+        //             'Tamanho',
+        //             'Quantidade',
+        //         ],
+        //         [
+        //             $value['id'],
+        //             $value['nome'],
+        //             $value['tamanho'],
+        //             $value['quantidade']
+        //         ]
+        //     ];
+
+        // }
+        CriarCSV::criarArquivo(CriarNomeArquivo::NomeAleatorio() . '.csv', $getalunos);
+    }
+
 
     ?>
 

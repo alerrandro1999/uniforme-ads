@@ -5,10 +5,6 @@ App\VariaviesDeAmbiente\Variaveis::load(__DIR__ . '/../');
 
 use App\Queries\Alunos;
 
-use Dompdf\Dompdf;
-
-$dompdf = new Dompdf();
-
 $alunos = new Alunos;
 
 ?>
@@ -19,7 +15,7 @@ $alunos = new Alunos;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
     <title>Fadesa - ADS</title>
 </head>
 
@@ -27,7 +23,7 @@ $alunos = new Alunos;
     <section class="main">
         <div class="container">
             <div class="imagem">
-                <img src="imagem/image.svg" alt="">
+                <img src="public/imagem/image.svg" alt="">
             </div>
             <div class="textos">
                 <form name="alunos" method="post">
@@ -79,34 +75,24 @@ $alunos = new Alunos;
         $alunos->insertAluno($nome, $tamanho, $quantidade);
     }
 
-    if (isset($_POST['pdf'])) {
-
-        // $html = file_get_contents('123');
-
-        $dompdf->loadHtml('<h1>ola</>');
-
-        $dompdf->render();
-
-        $dompdf->stream("alunos", array("Attachment"=>false));
-        // $dompdf->stream('alunos.pdf');
-    }
     ?>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-<!-- <script src="javascript/scripts.js"></script> -->
+    <!-- <script src="javascript/scripts.js"></script> -->
 
-<script>
-    $(document).ready(function(){
-    $.ajax({
-        url: 'Ajax.php',//arquivo php onde serão buscados os dados
-        type:'post',     //método HTTP usado
-        success: function(dados){
-            $('#result').html(dados);
-        }
-    });
-});
-</script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'public/Ajax.php', //arquivo php onde serão buscados os dados
+                type: 'post', //método HTTP usado
+                success: function(dados) {
+                    $('#result').html(dados);
+                }
+            });
+        });
+    </script>
 
 </body>
+
 </html>

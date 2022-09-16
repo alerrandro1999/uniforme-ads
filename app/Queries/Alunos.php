@@ -24,7 +24,7 @@ class Alunos extends Connection
         try {
             $sql = Connection::connectionDatabase()->prepare("SELECT id, nome, tamanho, quantidade FROM alunos");
             $sql->execute();
-            return $sql->fetchAll();
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             die($e->getMessage());
         }

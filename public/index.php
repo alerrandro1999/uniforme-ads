@@ -7,13 +7,7 @@ use App\Queries\Alunos;
 
 use App\CriarCSV\CriarCSV;
 
-use App\CriarCSV\CriarNomeArquivo;
-
 $alunos = new Alunos;
-
-
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,12 +43,9 @@ $alunos = new Alunos;
                         <option value="G">G</option>
                         <option value="GG">GG</option>
                     </select>
-                    <!-- <button type="submit" name="enviar">Enviar</button> -->
-                    <!-- <button type="submit" name="pdf">Gerar PDF</button> -->
                     <input class="botoes" type="submit" value="Enviar" name="enviar">
 
                 </form>
-                    <!-- <input class="botoes" type="submit" value="CSV" name="csv" download="alunos.csv"> -->
                     <a href="alunos.csv" download="alunos.csv" class="botoes">CSV</a>
             </div>
         </div>
@@ -79,6 +70,8 @@ $alunos = new Alunos;
         $nome = $_POST['nome'];
         $quantidade = $_POST['quantidade'];
         $tamanho = $_POST['tamanho'];
+
+
         $alunos->insertAluno($nome, $tamanho, $quantidade);
 
         $getalunos = $alunos->getAlunos();
@@ -99,15 +92,9 @@ $alunos = new Alunos;
      
         CriarCSV::criarArquivo('alunos' . '.csv', $getalunos);
     }
-
-    // if (isset($_POST['csv'])) {
-
-    // }
     ?>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
-    <!-- <script src="javascript/scripts.js"></script> -->
 
     <script>
         $(document).ready(function() {
@@ -120,7 +107,5 @@ $alunos = new Alunos;
             });
         });
     </script>
-
 </body>
-
 </html>

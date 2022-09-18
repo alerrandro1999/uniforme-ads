@@ -11,7 +11,6 @@ use App\CriarCSV\CriarNomeArquivo;
 
 $alunos = new Alunos;
 
-$getalunos = $alunos->getAlunos();
 
     
 
@@ -55,9 +54,8 @@ $getalunos = $alunos->getAlunos();
                     <input class="botoes" type="submit" value="Enviar" name="enviar">
 
                 </form>
-                <form action="" method="post">
-                    <input class="botoes" type="submit" value="PDF" name="csv">
-                </form>
+                    <!-- <input class="botoes" type="submit" value="CSV" name="csv" download="alunos.csv"> -->
+                    <a href="alunos.csv" download="alunos.csv" class="botoes">CSV</a>
             </div>
         </div>
         <div class="table">
@@ -77,34 +75,34 @@ $getalunos = $alunos->getAlunos();
 
     <?php
     if (isset($_POST['nome'])) {
+
         $nome = $_POST['nome'];
         $quantidade = $_POST['quantidade'];
         $tamanho = $_POST['tamanho'];
         $alunos->insertAluno($nome, $tamanho, $quantidade);
+
+        $getalunos = $alunos->getAlunos();
+
+        $cabecalho = [ 
+        
+            'id' => 'ID',
+            'nome' => 'Nome',
+            'tamanho' => 'Tamanho',
+            'quantidade' => 'Quantidade'
+        ];
+
+        $getalunos = array_reverse($getalunos);
+
+        array_push($getalunos, $cabecalho);
+
+        krsort($getalunos);
+     
+        CriarCSV::criarArquivo('alunos' . '.csv', $getalunos);
     }
 
-    if (isset($_POST['csv'])) {
-        // foreach ($getalunos as $value) {
-        //     $dados = [
-        //         [
-        //             'ID',
-        //             'Nome',
-        //             'Tamanho',
-        //             'Quantidade',
-        //         ],
-        //         [
-        //             $value['id'],
-        //             $value['nome'],
-        //             $value['tamanho'],
-        //             $value['quantidade']
-        //         ]
-        //     ];
+    // if (isset($_POST['csv'])) {
 
-        // }
-        CriarCSV::criarArquivo(CriarNomeArquivo::NomeAleatorio() . '.csv', $getalunos);
-    }
-
-
+    // }
     ?>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

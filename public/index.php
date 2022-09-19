@@ -32,12 +32,16 @@ $alunos = new Alunos;
                     <input type="text" name="nome" id="" required>
                     <label for="">Quantidade</label>
                     <select name="quantidade" id="" required>
+                        <option value="" selected>Escolha a quantidade</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                     <label for="">Tamanho</label>
                     <select name="tamanho" id="" required>
+                        <option value="" selected >Escolha o tamanho</option>
                         <option value="P">P</option>
                         <option value="M">M</option>
                         <option value="G">G</option>
@@ -46,7 +50,7 @@ $alunos = new Alunos;
                     <input class="botoes" type="submit" value="Enviar" name="enviar">
 
                 </form>
-                    <a href="alunos.csv" download="alunos.csv" class="botoes">CSV</a>
+                    <a href="alunos.csv" download="alunos.csv" class="botoes">Arquivo CSV</a>
             </div>
         </div>
         <div class="table">

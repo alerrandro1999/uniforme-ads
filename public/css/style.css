@@ -5,9 +5,8 @@
 }
 
 .main{
-    margin: 0 auto;
+    margin: 50px auto;
     max-width: 1280px;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,6 +63,19 @@ td{
     font-weight: bold;
 }
 
+label{
+    font-size: 20px;
+}
+
+input{
+    padding: 5px 20px;
+}
+
+a{
+    text-decoration: none;
+    text-align: center;
+}
+
 .imagem{
     margin-bottom: 15px;
 }
@@ -71,4 +83,20 @@ td{
 .textos{
     display: flex;
     flex-direction: column;
+}
+
+@media(max-width: 400px){
+    table{
+        padding: 10px;
+    }
+    
+    th{
+        padding: 5px;
+        font-size: 10px;
+    }
+    
+    td{
+        padding: 5px;
+        font-size: 10px;
+    }
 }
